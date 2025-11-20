@@ -4,8 +4,18 @@ project(fleet_server)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Protobuf REQUIRED NO_DEFAULT_PATH)
-find_package(gRPC REQUIRED NO_DEFAULT_PATH)
+# Detect platform and choose find_package options
+if(APPLE)
+    message(STATUS "Building on macOS → enabling NO_DEFAULT_PATH for find_package")
+    set(FIND_OPTS NO_DEFAULT_PATH)
+else()
+    message(STATUS "Building on Linux → using default search paths")
+    set(FIND_OPTS "")
+endif()
+
+# Find dependencies
+find_package(Protobuf REQUIRED ${FIND_OPTS})
+find_package(gRPC REQUIRED ${FIND_OPTS})
 
 include_directories(${Protobuf_INCLUDE_DIRS} ${gRPC_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/generated)
