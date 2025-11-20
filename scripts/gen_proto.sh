@@ -11,11 +11,11 @@ mkdir -p $CPP_OUT $PY_OUT
 protoc -I=$PROTO_DIR \
         --cpp_out=$CPP_OUT \
         --grpc_out=$CPP_OUT \
-        --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` \
+        --plugin=protoc-gen-grpc=$(which grpc_cpp_plugin) \
         $PROTO_DIR/*.proto
 
 # Generate Python proto files
-python -m grpc_tools.protoc \
+python3 -m grpc_tools.protoc \
         -I=$PROTO_DIR \
         --python_out=$PY_OUT \
         --grpc_python_out=$PY_OUT \
