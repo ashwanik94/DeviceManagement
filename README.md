@@ -21,7 +21,7 @@ Proto files define all APIs, and the project includes automation scripts to gene
 **🛠️ Building & Running**
 
     cd scripts
-    ./gen_protos.sh # Generate Proto Files for c++ and python
+    ./gen_proto.sh # Generate Proto Files for c++ and python
     ./run_server.sh # Build & Run the Server
 
 **🐍 Python CLI Usage**
