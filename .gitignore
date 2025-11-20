@@ -1,0 +1,65 @@
+# ---------------------------
+# macOS
+# ---------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---------------------------
+# Python
+# ---------------------------
+# Virtual environment
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+
+# Mypy / pytest / coverage
+.mypy_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+*.cover
+*.py,cover
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# ---------------------------
+# C++ / Backend
+# ---------------------------
+# Build folder
+/backend/build/
+
+# CMake artifacts
+/CMakeFiles/
+/CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+
+# Generated C++ protobuf files (optional)
+backend/generated/*.pb.cc
+backend/generated/*.pb.h
+backend/generated/*.grpc.pb.cc
+backend/generated/*.grpc.pb.h
+
+# ---------------------------
+# Misc
+# ---------------------------
+*~
+*.swp

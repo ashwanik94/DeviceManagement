@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "macos-homebrew",
+      "displayName": "macOS Homebrew Configuration",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/macos",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "/opt/homebrew",
+        "Protobuf_DIR": "/opt/homebrew/lib/cmake/protobuf",
+        "gRPC_DIR": "/opt/homebrew/lib/cmake/grpc"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudio/CMake/Settings": {
+          "sourceDirectory": "${sourceDir}/backend" 
+        }
+      }
+    },
+    {
+      "name": "linux-system",
+      "displayName": "Linux System Build (GCC)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/linux",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudio/CMake/Settings": {
+          "sourceDirectory": "${sourceDir}/backend" 
+        }
+      }
+    }
+  ],
+
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "macos-homebrew"
+    },
+    {
+      "name": "linux-build",
+      "configurePreset": "linux-system"
+    }
+  ]
+}

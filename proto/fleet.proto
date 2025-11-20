@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package fleet;
+
+import "google/protobuf/timestamp.proto";
+
+// Device status enum
+enum DeviceStatus {
+  DEVICE_STATUS_UNKNOWN = 0;
+  IDLE = 1;
+  BUSY = 2;
+  OFFLINE = 3;
+  MAINTENANCE = 4;
+  UPDATING = 5;
+  RECOVERING = 6;
+  ERROR = 7;
+}
+
+enum ActionType {
+  ACTION_TYPE_UNKNOWN = 0;
+  SOFTWARE_UPDATE = 1;
+}
+
+enum ActionStatus {
+  ACTION_STATUS_UNKNOWN = 0;
+  PENDING = 1;
+  RUNNING = 2;
+  COMPLETED = 3;
+  FAILED = 4;
+}
+
+message Device {
+  string device_id = 1;
+  DeviceStatus status = 2;
+  string metadata = 3;
+  google.protobuf.Timestamp last_seen = 4;
+}
+
+message RegisterDeviceRequest {
+  string device_id = 1;
+  DeviceStatus initial_status = 2;
+  string metadata = 3;
+}
+message RegisterDeviceResponse {
+  Device device = 1;
+}
+
+message SetDeviceStatusRequest {
+  string device_id = 1;
+  DeviceStatus status = 2;
+}
+message SetDeviceStatusResponse {
+  Device device = 1;
+}
+
+message GetDeviceInfoRequest {
+  string device_id = 1;
+}
+message GetDeviceInfoResponse {
+  Device device = 1;
+}
+
+message InitiateDeviceActionRequest {
+  string device_id = 1;
+  ActionType action_type = 2;
+  map<string, string> action_params = 3;
+}
+message InitiateDeviceActionResponse {
+  string action_id = 1;
+}
+
+message GetDeviceActionStatusRequest {
+  string action_id = 1;
+}
+message DeviceAction {
+  string action_id = 1;
+  string device_id = 2;
+  ActionType action_type = 3;
+  ActionStatus status = 4;
+  string status_message = 5;
+  google.protobuf.Timestamp started_at = 6;
+  google.protobuf.Timestamp finished_at = 7;
+}
+message GetDeviceActionStatusResponse {
+  DeviceAction action = 1;
+}
+
+message ListDevicesRequest {}
+message ListDevicesResponse {
+  repeated Device devices = 1;
+}
+
+service FleetManager {
+  rpc RegisterDevice(RegisterDeviceRequest) returns (RegisterDeviceResponse);
+  rpc SetDeviceStatus(SetDeviceStatusRequest) returns (SetDeviceStatusResponse);
+  rpc GetDeviceInfo(GetDeviceInfoRequest) returns (GetDeviceInfoResponse);
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse);
+  rpc InitiateDeviceAction(InitiateDeviceActionRequest) returns (InitiateDeviceActionResponse);
+  rpc GetDeviceActionStatus(GetDeviceActionStatusRequest) returns (GetDeviceActionStatusResponse);
+}
