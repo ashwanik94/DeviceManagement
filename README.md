@@ -1,7 +1,7 @@
 **📦 DeviceManagement**
 
-DeviceManagement is a cross-platform project implementing a gRPC-based device management backend in C++, along with a Python CLI for interacting with the server.
-Proto files define all APIs, and the project includes automation scripts to generate code and build/run the server.
+DeviceManagement is a cross-platform project that implements a gRPC-based device management backend in C++, along with a Python CLI for interacting with the server.
+Protocol buffer files define all APIs, and the project includes automation scripts to generate code and build/run the server.
 
 **🚀 Features**
   - gRPC backend for device management
@@ -34,8 +34,9 @@ Proto files define all APIs, and the project includes automation scripts to gene
 
 **📡 gRPC API Overview**
 
-All API definitions live under proto/fleet.proto. **gen_protos.sh** generates the proto file for both cpp and pyhton. It can be generated manually by using correct command.
-It Includes:
+All API definitions are located under proto/fleet.proto.
+gen_proto.sh generates the stub files for both C++ and Python.
+You can also generate them manually by using the appropriate commands.
 
     RegisterDevice
     SetDeviceStatus
@@ -46,8 +47,7 @@ It Includes:
 **🔧 CMake Notes (Cross-Platform)**
 
 The project supports both macOS (Homebrew) and Linux.
-
-The CMake scripts auto-detect paths when possible, but can be added/override for other platform.
+CMake scripts auto-detect paths when possible, and can be customized or overridden for other platforms.
 
 **🛣️ Roadmap**
   - Docker container support
