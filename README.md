@@ -21,16 +21,16 @@ Proto files define all APIs, and the project includes automation scripts to gene
 **🛠️ Building & Running**
 
     cd scripts
-    ./gen_proto.sh # Generate Proto Files for c++ and python
-    ./run_server.sh # Build & Run the Server
+    ./gen_proto.sh   # Generate Proto Files for c++ and python
+    ./run_server.sh & # Build & Run the Server in background
 
 **🐍 Python CLI Usage**
 
     cd frontend
-    python cli.py register DEVICE_ID
-    python cli.py status SOME_ID
-    python cli.py update DEVICE_ID --version VERSION   
-    python cli.py list
+    python3 cli.py register DEVICE_ID
+    python3 cli.py status SOME_ID
+    python3 cli.py update DEVICE_ID --version VERSION   
+    python3 cli.py list
 
 **📡 gRPC API Overview**
 
